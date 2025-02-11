@@ -1,0 +1,39 @@
+<h5 class="fw-bold text-secondary mb-2">
+                    
+    <i class="fas fa-ticket-alt" data-bs-toggle="tooltip" title="Detalhes do Ticket"></i> Detalhes do Ticket
+</h5>
+
+<dl class="row mt-4">
+    
+    <dt class="col-4"><span class="fs-7">ID do Ticket:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.ticket_id }}</span></dd>
+    
+    <dt class="col-4"><span class="fs-7">Tipo de Problema/Solicitação:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.tipo }}</span></dd>
+    
+    {% if ticket.subtipo %}
+        <dt class="col-4"><span class="fs-7">Subtipo:</span></dt>
+        <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.subtipo }}</span></dd>
+    {% endif %}
+    
+    <dt class="col-4"><span class="fs-7">Usuário:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.usuario.first_name }} {{ ticket.usuario.last_name }}</span></dd>
+    
+    {% if ticket.data_conclusao %}
+        <dt class="col-4"><span class="fs-7">Data de conclusão:</span></dt>
+        <dd class="col-8"><span class="badge badge-success fs-8">{{ ticket.data_conclusao }}</span></dd>
+    {% endif %}
+    
+    <dt class="col-4"><span class="fs-7">Situação:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.get_status_display }}</span></dd>
+    
+    <dt class="col-4"><span class="fs-7">Prioridade:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.get_prioridade_display }}</span></dd>
+    
+    <dt class="col-4"><span class="fs-7">Nível:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.nivel_atendimento }}</span></dd>
+    
+    <dt class="col-4"><span class="fs-7">Técnico Responsável:</span></dt>
+    <dd class="col-8"><span class="fw-bold fs-8">{{ ticket.tecnico }}</span></dd>
+    
+</dl>

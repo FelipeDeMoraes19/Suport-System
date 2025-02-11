@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static file_extension %} 
+
+{% block conteudo %}
+
+<head>
+    <style>
+        #kt_chat_messenger_body {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        #kt_chat_messenger_body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('{% static "images/mm.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<div class=" mt-5">
+    <div class="card card-flush shadow-sm rounded p-4">
+        {% include "ticket/partials/_header_ticket.html" %}
+        <div class="separator border-primary my-4"></div>
+        <div class="mb-4">
+            {% include "ticket/partials/_details.html" %}
+        </div>
+        <div class="mb-4">
+            {% include "ticket/partials/_descricao.html" %}
+        </div>
+        {% if ticket.url %}
+        <div class="card mb-4 shadow-sm rounded bg-light">
+            {% include "ticket/partials/_icons.html" %}
+        </div>
+        {% endif %}
+        {% if ticket.conclusao %}
+            {% include "ticket/partials/_conclusao.html" %}
+        {% endif %}
+        <div class="mb-4">
+            {% include "ticket/partials/_particularidades.html" %}
+        </div>
+        <div class="mb-4">
+            {% include "ticket/partials/_chat.html" %}
+        </div>
+        <div class="mb-2">
+            {% include "ticket/partials/_historico.html" %}
+        </div>
+        <div class="d-flex justify-content-end">
+            {% include "ticket/partials/_status_ticket.html" %}
+        </div>
+    </div>
+</div>
+    
+{% include "ticket/_js/status.html" %}
+
+{% endblock %}

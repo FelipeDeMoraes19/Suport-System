@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between align-items-center mb-6">
+    <h1>{{ request.user }}</h1>
+    <div class="d-flex align-items-center">
+        <div class="me-4">
+            <form method="get" action="">
+                <select name="status" onchange="this.form.submit()" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body w-125px">
+                    <option value="T" {% if selected_status == 'T' %}selected{% endif %}>Todos</option>
+                    <option value="A" {% if selected_status == 'A' %}selected{% endif %}>Aberto</option>
+                    <option value="EA" {% if selected_status == 'EA' %}selected{% endif %}>Em Análise</option>
+                    <option value="EE" {% if selected_status == 'EE' %}selected{% endif %}>Em Execução</option>
+                    <option value="C" {% if selected_status == 'C' %}selected{% endif %}>Concluído</option>
+                    <option value="F" {% if selected_status == 'F' %}selected{% endif %}>Fechado</option>
+                    <option value="R" {% if selected_status == 'R' %}selected{% endif %}>Reaberto</option>
+                </select>
+            </form>
+        </div>
+        <a href="{% url 'ticket:create' %}" class="btn btn-primary">Criar Ticket</a>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{% load static file_extension %} 
+
+<div class="card-body d-flex align-items-center">            
+    <div class="symbol symbol-30px">
+        {% if ticket.url|endswith_custom:'.png' %}
+            <img src="{% static 'arle/arle_icons/png.svg' %}" alt="Icone PNG" />
+        {% elif ticket.url|endswith_custom:'.jpeg' or ticket.url|endswith_custom:'.jpg' %}
+            <img src="{% static 'arle/arle_icons/jpeg.svg' %}" alt="Icone JPEG" />
+        {% elif ticket.url|endswith_custom:'.pdf' %}
+            <img src="{% static 'arle/arle_icons/pdf.svg' %}" alt="Icone PDF" />
+        {% elif ticket.url|endswith_custom:'.doc' %}
+            <img src="{% static 'arle/arle_icons/doc.svg' %}" alt="Icone DOC" />
+        {% elif ticket.url|endswith_custom:'.docx' %}
+            <img src="{% static 'arle/arle_icons/docx.svg' %}" alt="Icone DOCX" />
+        {% elif ticket.url|endswith_custom:'.ai' %}
+            <img src="{% static 'arle/arle_icons/ai.svg' %}" alt="Icone AI" />
+        {% elif ticket.url|endswith_custom:'.css' %}
+            <img src="{% static 'arle/arle_icons/css.svg' %}" alt="Icone CSS" />
+        {% elif ticket.url|endswith_custom:'.csv' %}
+            <img src="{% static 'arle/arle_icons/csv.svg' %}" alt="Icone CSV" />
+        {% elif ticket.url|endswith_custom:'.xml' %}
+            <img src="{% static 'arle/arle_icons/xml.svg' %}" alt="Icone XML" />
+        {% elif ticket.url|endswith_custom:'.zip' %}
+            <img src="{% static 'arle/arle_icons/zip.svg' %}" alt="Icone ZIP" />
+        {% else %}
+            <img src="{% static 'arle/arle_icons/default-icon.png' %}" alt="Icone Padrão" />
+        {% endif %}
+    </div>
+    <div class="ms-3 ">
+        <span class="mb-1 fs-7 fw-bold">{{ ticket.url }}</span>
+    </div>                
+</div>

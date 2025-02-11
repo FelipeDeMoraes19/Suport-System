@@ -1,0 +1,27 @@
+{% load static %}
+<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
+<script src="{% static 'js/widgets.bundle.js' %}"></script>
+<script src="{% static 'js/scripts.bundle.js' %}"></script>
+<script src="{% static 'js/custom/widgets.js' %}"></script>
+<script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script>
+<script src="{% static 'plugins/custom/datatables/datatables.bundle.js' %}"></script>
+<script src="{% static 'js/datatable_arle.js' %}"></script>
+
+
+{% comment %}
+  importes felipe do app ticket
+{% endcomment %}
+
+{% include '_base/ticket/_create.html' %}   
+
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+<link rel="shortcut icon" href="{% static '/arle/logos/default.ico' %}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+{% comment %}
+  imports ailton
+{% endcomment %}
+
+

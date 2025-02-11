@@ -1,0 +1,27 @@
+<form method="post" class="d-flex" id="encerrar-form">
+    {% csrf_token %}
+    <input type="hidden" name="action" id="form-action" value="">
+    {% if ticket.status == 'F' or ticket.status == 'C' %}
+        <!-- Botão de Ativar -->
+        <button class="btn btn-secondary me-2" id="sweet_alert" name="ativar">
+            <span class="indicator-label">Ativar</span>
+            <span class="indicator-progress">Por favor, aguarde... 
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+        </button>
+    {% else %}
+        <!-- Botão de Concluir -->
+        <button class="btn btn-primary me-2" id="sweet_alert" name="encerrar">
+            <span class="indicator-label">Concluir</span>
+            <span class="indicator-progress">Por favor, aguarde... 
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+        </button>
+    {% endif %}
+    <a href="{% url 'ticket:dashboard' %}" class="btn btn-secondary">
+        <span class="indicator-label">Voltar</span>
+        <span class="indicator-progress">Por favor, aguarde... 
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+        </span>
+    </a>
+</form>

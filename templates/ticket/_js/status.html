@@ -1,0 +1,155 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('sweet_alert').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            var buttonLabel = this.querySelector('.indicator-label').innerText;
+    
+            if (buttonLabel === 'Concluir') {
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    html: `
+                        <p>Deseja concluir o atendimento deste ticket?</p>
+                        <textarea id="swal-input-conclusao" class="swal2-textarea" placeholder="Digite a conclusão aqui..." style="width: 100%; height: 100px; resize: none; margin: 0 auto;"></textarea>
+                    `,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, concluir!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    preConfirm: () => {
+                        const conclusao = Swal.getPopup().querySelector('#swal-input-conclusao').value;
+                        if (!conclusao) {
+                            Swal.showValidationMessage(`Você precisa escrever a conclusão para encerrar o ticket!`);
+                        }
+                        return conclusao;
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const conclusaoField = document.getElementById('id_conclusao');
+                        if (conclusaoField) {
+                            conclusaoField.value = result.value;
+                        } else {
+                            const input = document.createElement('textarea');
+                            input.name = 'conclusao';
+                            input.value = result.value;
+                            input.style.display = 'none';
+                            document.getElementById('encerrar-form').appendChild(input);
+                        }
+                        document.getElementById('form-action').value = 'encerrar';
+    
+                        document.getElementById('encerrar-form').submit();
+                        
+                        Swal.fire({
+                            title: 'Feito!',
+                            text: 'Ticket encerrado com sucesso!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok',
+                            customClass: {
+                                confirmButton: 'btn btn-primary'
+                            }
+                        });
+                    }
+                });
+            } else if (buttonLabel === 'Ativar') {
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: 'Deseja ativar novamente este ticket?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, ativar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('form-action').value = 'ativar';
+                        document.getElementById('encerrar-form').submit();
+                        
+                        Swal.fire({
+                            title: 'Feito!',
+                            text: 'Ticket ativado com sucesso!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok',
+                            customClass: {
+                                confirmButton: 'btn btn-primary'
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        document.getElementById('kt_docs_sweetalert_state_warning').addEventListener('click', function(e) {
+            e.preventDefault();
+    
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: 'Deseja confirmar as alterações nas particularidades do ticket?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, confirmar!',
+                cancelButtonText: 'Cancelar',
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.getElementById('encerrar-form-form');
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'confirmar_btn';
+                    input.value = 'true';  
+                    form.appendChild(input);
+
+                    form.submit();
+                    Swal.fire({
+                        title: 'Feito!',
+                        text: 'Alterações confirmadas com sucesso!',
+                        icon: 'success',
+                        confirmButtonText: 'Ok',
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        }
+                    });
+                }
+            });
+        });
+
+        document.getElementById('file-upload').addEventListener('change', function(event) {
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';  
+
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'img-thumbnail';
+                    img.style.maxHeight = '50px';
+                    preview.appendChild(img);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function scrollToBottom() {
+            var messageContainer = document.getElementById('mensagemContainer');
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        scrollToBottom();
+
+        const observer = new MutationObserver(scrollToBottom);
+        observer.observe(document.getElementById('mensagemContainer'), { childList: true });
+    });
+</script>

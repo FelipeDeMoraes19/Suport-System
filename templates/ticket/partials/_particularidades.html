@@ -1,0 +1,38 @@
+<h5 class="fw-bold text-secondary mb-2">
+    <i class="fas fa-exclamation-circle" data-bs-toggle="tooltip" title="Situação, Prioridade, Nível de Dificuldade e Técnico Responsável."></i> Particularidades do Ticket
+</h5>
+<form method="post" id="encerrar-form-form">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+            {{ form.status }}
+        </div>
+        <div class="col-md-4">
+            <label for="{{ form.prioridade.id_for_label }}" class="form-label">Prioridade</label>
+            {{ form.prioridade }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="{{ form.tecnico.id_for_label }}" class="form-label">Técnico</label>
+            {{ form.tecnico }}
+        </div>
+        <div class="col-md-6">
+            <label for="{{ form.nivel_atendimento.id_for_label }}" class="form-label">Nível</label>
+            {{ form.nivel_atendimento }}
+        </div>
+    </div>
+    <div class="row mb-3" id="conclusao-field" style="display:none;">
+        <div class="col-md-12">
+            <span for="{{ form.conclusao.id_for_label }}" class="form-label">Comentário de Conclusão</span>
+            {{ form.conclusao }}
+        </div>
+    </div>
+    {% if ticket.status != 'F' and ticket.status != 'C' %}
+    <button type="button" class="btn btn-primary float-end btn-sm" id="kt_docs_sweetalert_state_warning" name="confirmar">
+        <span class="indicator-label">Confirmar</span>
+        <span class="indicator-progress">Por favor, aguarde... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+    </button>
+    {% endif %}
+</form>

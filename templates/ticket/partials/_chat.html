@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="chat-header">
+    <h5 class="fw-bold text-secondary mb-2">
+        <i class="fas fa-comments" data-bs-toggle="tooltip" title="Chat"></i> Chat
+    </h5>
+</div>
+<div id="kt_chat_messenger">
+    <div class="chat-body card-body p-3" id="kt_chat_messenger_body">
+        <div class="scroll-y me-n5 pe-5 h-300px h-lg-400px" 
+        id="mensagemContainer" 
+        data-kt-element="messages"
+        data-kt-scroll="true"
+        data-kt-scroll-max-height="100%"
+        data-kt-scroll-dependencies="#kt_chat_messenger_header, #kt_chat_messenger_footer"
+        data-kt-scroll-offset="5px"
+        >
+        {% include "ticket/partials/components/_lista_msg.html" %}
+        </div>
+    </div>
+    <div class="chat-footer card-footer pt-3 d-flex align-items-center" id="kt_chat_messenger_footer">
+        {% include "ticket/partials/components/_mensagem.html" %}
+    </div>
+</div>

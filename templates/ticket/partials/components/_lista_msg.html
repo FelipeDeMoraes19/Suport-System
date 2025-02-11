@@ -1,0 +1,51 @@
+{% load static %}
+
+{% for mensagem in mensagens %}
+{% if mensagem.autor == request.user %}
+    <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex flex-column align-items-end">
+            <div class="d-flex align-items-center mb-1">
+                <div class="me-2">
+                    <span class="text-muted fs-7 mb-1">{{ mensagem.criado_em|date:"d M, Y H:i" }}</span>
+                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">Você</a>
+                </div>
+                <div class="symbol symbol-35px symbol-circle">
+                    <img alt="Pic" src="{% static 'arle/users/user_admin_sem_fundo.png' %}" />
+                </div>
+            </div>
+            <div class="p-4 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end">
+                {% if mensagem.anexo %}
+                    <a href="{{ mensagem.anexo.url }}" data-lightbox="imagem-anexo" data-title="{{ mensagem.anexo.name }}">
+                        <img src="{{ mensagem.anexo.url }}" alt="Anexo" class="img-fluid rounded" style="max-height: 100px;">
+                    </a>
+                {% else %}
+                    {{ mensagem.texto }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="d-flex justify-content-start mb-3">
+        <div class="d-flex flex-column align-items-start">
+            <div class="d-flex align-items-center mb-1">
+                <div class="symbol symbol-35px symbol-circle">
+                    <img alt="Pic" src="{% static 'arle/users/user_admin_sem_fundo.png' %}" />
+                </div>
+                <div class="ms-2">
+                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">{{ mensagem.autor }}</a>
+                    <span class="text-muted fs-7 mb-1">{{ mensagem.criado_em|date:"d M, Y H:i" }}</span>
+                </div>
+            </div>
+            <div class="p-4 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start">
+                {% if mensagem.anexo %}
+                    <a href="{{ mensagem.anexo.url }}" data-lightbox="imagem-anexo" data-title="{{ mensagem.anexo.name }}">
+                        <img src="{{ mensagem.anexo.url }}" alt="Anexo" class="img-fluid rounded" style="max-height: 100px;">
+                    </a>
+                {% else %}
+                    {{ mensagem.texto }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endfor %}

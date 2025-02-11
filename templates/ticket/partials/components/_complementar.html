@@ -1,0 +1,37 @@
+{% load static %}
+
+{% if ticket.tecnico == request.user and ticket.atualizado_tecnico %}
+    <span class="badge bg-warning mt-4" style="margin-top: -10px;">Atualizado recentemente</span>
+{% elif ticket.usuario == request.user and ticket.atualizado_colaborador %}
+    <span class="badge bg-warning mt-4" style="margin-top: -10px;">Atualizado recentemente</span>
+{% endif %}
+<div class="d-flex align-items-center mb-5">
+    <div class="symbol symbol-50px me-5">
+        <img src="{% static 'arle/users/user_admin_sem_fundo.png' %}" alt="image" class="p-3" />
+    </div>
+    <div class="text-gray-700 fw-semibold">
+        <div class="mb-2">
+            <i class="fas fa-user"></i> Colaborador: {{ ticket.usuario.first_name }} {{ ticket.usuario.last_name }}
+        </div>
+    </div>
+</div>
+<p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7" style="max-height: 60px; overflow: hidden; text-overflow: ellipsis;">
+    {{ ticket.descricao|truncatewords:20 }}
+</p>
+<h5 class="fw-bold text-dark border-bottom pb-2 mb-3">Informações Complementares:</h5>
+<div class="text-gray-700 mb-3">
+    <div><i class="fas fa-building"></i> <strong>Departamento:</strong> Fiscal</div>
+    <div><i class="fas fa-exclamation-circle"></i> <strong>Prioridade:</strong> {{ ticket.get_prioridade_display }}</div>
+</div>
+<div class="separator border-secondary my-4"></div>
+<h5 class="fw-bold text-dark border-bottom pb-2 mb-3">Datas Importantes:</h5>
+<div class="text-gray-700">
+    <div><i class="fas fa-play"></i> <strong>Data Start:</strong> {{ ticket.criado_em|date:"d \d\e F \d\e Y" }}</div>
+    <div><i class="fas fa-check"></i> <strong>Data Conclusão:</strong> 
+        {% if ticket.data_conclusao %}
+            {{ ticket.data_conclusao|date:"d \d\e F \d\e Y" }}
+        {% else %}
+            Não definida
+        {% endif %}
+    </div>
+</div>

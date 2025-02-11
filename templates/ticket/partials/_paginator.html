@@ -1,0 +1,37 @@
+<ul class="pagination">
+    {% if tickets.has_previous %}
+        <li class="page-item previous">
+            <a href="?page={{ tickets.previous_page_number }}&status={{ selected_status }}" class="page-link">
+                <i class="previous"></i>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item previous disabled">
+            <a href="#" class="page-link"><i class="previous"></i></a>
+        </li>
+    {% endif %}
+
+    {% for num in tickets.paginator.page_range %}
+        {% if tickets.number == num %}
+            <li class="page-item active">
+                <a href="#" class="page-link">{{ num }}</a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a href="?page={{ num }}&status={{ selected_status }}" class="page-link">{{ num }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if tickets.has_next %}
+        <li class="page-item next">
+            <a href="?page={{ tickets.next_page_number }}&status={{ selected_status }}" class="page-link">
+                <i class="next"></i>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item next disabled">
+            <a href="#" class="page-link"><i class="next"></i></a>
+        </li>
+    {% endif %}
+</ul>

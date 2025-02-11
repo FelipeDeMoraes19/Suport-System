@@ -1,0 +1,34 @@
+{% load static %}
+
+{% for ticket in tickets %}
+    <div class="col-md-6 col-xl-4">
+        <a href="{% url 'ticket:ticket_detail' ticket.id %}" 
+            class="card h-100
+            {% if ticket.status == 'A' %}border-primary 
+            {% elif ticket.status == 'F' %}border-danger 
+            {% elif ticket.status == 'C' %}border-success 
+            {% elif ticket.status == 'EE' %}border-secondary 
+            {% elif ticket.status == 'EA' %}border-warning 
+            {% elif ticket.status == 'R' %}border-info 
+            {% endif %} hover-elevate-up">
+            <div class="card-header ribbon ribbon-end ribbon-clip">
+                <div class="ribbon-label">
+                    {{ ticket.get_status_display|upper }}  
+                    <span class="ribbon-inner 
+                        {% if ticket.status == 'A' %} bg-primary
+                        {% elif ticket.status == 'F' %} bg-danger
+                        {% elif ticket.status == 'C' %} bg-success
+                        {% elif ticket.status == 'EE' %} bg-secondary
+                        {% elif ticket.status == 'EA' %} bg-warning
+                        {% elif ticket.status == 'R' %}bg-info
+                        {% endif %}"></span>
+                </div>
+                <div class="card-title fs-4 fw-bold text-dark">{{ ticket.tipo|upper }}</div>
+            </div>
+            
+            <div class="card-body p-9" style="overflow: hidden; max-height: 400px;">
+                {% include "ticket/partials/components/_complementar.html" %}
+            </div>
+        </a>
+    </div>
+{% endfor %}

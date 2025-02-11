@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+
+<div class="container mt-5">
+    <div class="card card-flush shadow-sm rounded">
+        <h1></h1>
+        <div class="card-header mt-6">
+            <h1>{{ request.user }}</h1>
+            <span class="fs-6"> Criar Ticket de Suporte</span>
+        </div>
+        <div class="card-body">
+            {% include "ticket/partials/_criar.html" %}
+        </div>
+    </div>
+</div>
+
+    {% include '_base/_js.html' %}
+    
+{% endblock %}
+

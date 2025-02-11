@@ -1,0 +1,19 @@
+<form method="post" enctype="multipart/form-data" action="{% url 'ticket:ticket_detail' ticket_id=ticket.id %}" class="d-flex w-100">
+    {% csrf_token %}
+    {% if ticket.status == 'F' or ticket.status == 'C' %}
+        <div class="text-muted w-100 text-center mb-3">
+            <p>Este ticket está {{ ticket.get_status_display }}. Não é possível enviar novas mensagens.</p>
+        </div>
+    {% else %}
+        <textarea class="form-control form-control-flush mb-2" rows="1" name="texto" placeholder="Digite uma mensagem"></textarea>                            
+        <div id="image-preview" class="me-2">                               
+        </div>
+        <label for="file-upload" class="btn btn-icon btn-sm btn-secondary ms-2 me-2">
+            <i class="fas fa-paperclip"></i>
+        </label>
+        <input type="file" id="file-upload" name="anexo" class="d-none" accept="image/*"/>
+        <button class="btn btn-icon btn-sm btn-primary ms-2" type="submit" name="enviar_mensagem">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    {% endif %}
+</form>

@@ -1,0 +1,17 @@
+<h5 class="fw-bold text-secondary mb-2">
+    <i class="fas fa-history" data-bs-toggle="tooltip" title="Histórico de Atualizações"></i> Histórico de Atualizações
+</h5>
+<dl class="row mt-2">
+    <dt class="col-4">Última atualização em:</dt>
+    <dd class="col-8">{{ ticket.atualizado_em|date:"d/m/Y à\s H:i" }}</dd>
+    {% if historico_list %}
+        <dt class="col-4">Histórico:</dt>
+        <dd class="col-8">
+            {% for historico in historico_list %}
+            <div class="historico-item">
+                <span class="historico-timestamp">{{ historico.data_criacao|date:"d/m/Y H:i" }}</span> - {{ historico.mensagem }}
+            </div>
+            {% endfor %}
+        </dd>
+    {% endif %}
+</dl>

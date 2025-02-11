@@ -1,0 +1,12 @@
+<div class="card mb-4 shadow-sm rounded">
+    <div class="card-header bg-light-success">
+        <h5 class="card-title fw-bold text-dark">Conclusão do Ticket</h5>
+    </div>
+    <div class="card-body" style="max-height: 200px; overflow-y: auto;">
+        {% for line in ticket.conclusao.splitlines %}
+        <div class="historico-item">
+            <span class="historico-timestamp">{{ line }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>

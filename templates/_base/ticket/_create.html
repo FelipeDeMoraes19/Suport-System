@@ -1,0 +1,84 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myDropzone = new Dropzone("#kt_dropzonejs_example_1", {
+            url: "{ url 'ticket:create' %}", 
+            paramName: "anexo", 
+            maxFiles: 10,
+            maxFilesize: 10, 
+            autoProcessQueue: false, 
+            addRemoveLinks: true,
+            acceptedFiles: "image/*",
+            accept: function(file, done) {
+                done();
+            },
+            init: function() {
+                var myDropzone = this;
+        
+                document.querySelector("#ticket-form").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    
+                    if (myDropzone.getQueuedFiles().length > 0) {
+                        myDropzone.processQueue();
+                    } else {
+                        e.target.submit(); 
+                    }
+                });
+        
+                myDropzone.on("queuecomplete", function() {
+                    document.querySelector("#ticket-form").submit();
+                });
+        
+                myDropzone.on("sending", function(file, xhr, formData) {
+                    var formElements = document.querySelector("#ticket-form").elements;
+                    for (var i = 0; i < formElements.length; i++) {
+                        var el = formElements[i];
+                        if (el.name) {
+                            formData.append(el.name, el.value);
+                        }
+                    }
+                });
+        
+                myDropzone.on("error", function(file, errorMessage) {
+                    console.log("Erro no upload do arquivo:", file, errorMessage);
+                });
+            }
+        });
+    });
+    
+    function updateSubtypes() {
+        const tipo = document.getElementById('tipo').value.toLowerCase();
+        const grupoSubtipo = document.getElementById('subtype-group');
+        const selectSubtipo = document.getElementById('subtipo');
+        selectSubtipo.innerHTML = ''; 
+    
+        const subtipos = {
+            'processos': ['Perfil', 'Tarefas', 'Planejamento', 'Obrigações'],
+            'cadastros': ['Clientes', 'Departamentos', 'Colaboradores', 'Permissões'],
+            'pdca': ['Dashboard', 'PDCAs (R2 e R3)', 'R4', 'Config'],
+            'anomalias': ['Dashboard', 'Gerar', 'Consultar'],
+            'legalizacoes': ['Dashboard', 'Consulta', 'Cadastro', 'Protocolo'],
+            'fiscalizao': ['Dashboard', 'Consulta', 'Cadastro'],
+            'recuperacoes': ['Consulta', 'Cadastro'],
+            'tabelas': ['Atividade Econômica', 'Cargos', 'Contratos', 'Feriados', 'Grupo Econômico', 'Regime Tributário', 'Texto Definidos', 'Classificação de Tarefas']
+        };
+    
+        if (subtipos[tipo]) {
+            grupoSubtipo.style.display = 'block';
+            subtipos[tipo].forEach(subtipo => {
+                const option = document.createElement('option');
+                option.value = subtipo.toLowerCase().replace(/\s+/g, '_');
+                option.textContent = subtipo;
+                selectSubtipo.appendChild(option);
+            });
+        } else {
+            grupoSubtipo.style.display = 'none';
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    });
+</script>
