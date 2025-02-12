@@ -352,6 +352,6 @@ class TicketDetailView(View):
         }
 
 class CustomLoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'ticket/login.html'
     redirect_authenticated_user = True
     next_page = reverse_lazy('dashboard')

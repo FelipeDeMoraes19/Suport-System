@@ -4,7 +4,7 @@
     </div>
     <div class="card-body p-5">
         <h4 class="text-center mb-4 text-gray-800">Por favor, faça o login</h4>
-        <form method="post" action="{ url 'login' %}">
+        <form method="post" action="{% url 'ticket:login' %}">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="form-group mb-3">
