@@ -3,27 +3,27 @@
 <div class="card-body d-flex align-items-center">            
     <div class="symbol symbol-30px">
         {% if ticket.url|endswith_custom:'.png' %}
-            <img src="{% static 'arle/arle_icons/png.svg' %}" alt="Icone PNG" />
+            <img src="{% static 'projeto/png.svg' %}" alt="Icone PNG" />
         {% elif ticket.url|endswith_custom:'.jpeg' or ticket.url|endswith_custom:'.jpg' %}
-            <img src="{% static 'arle/arle_icons/jpeg.svg' %}" alt="Icone JPEG" />
+            <img src="{% static 'projeto/jpeg.svg' %}" alt="Icone JPEG" />
         {% elif ticket.url|endswith_custom:'.pdf' %}
-            <img src="{% static 'arle/arle_icons/pdf.svg' %}" alt="Icone PDF" />
+            <img src="{% static 'projeto/pdf.svg' %}" alt="Icone PDF" />
         {% elif ticket.url|endswith_custom:'.doc' %}
-            <img src="{% static 'arle/arle_icons/doc.svg' %}" alt="Icone DOC" />
+            <img src="{% static 'projeto/doc.svg' %}" alt="Icone DOC" />
         {% elif ticket.url|endswith_custom:'.docx' %}
-            <img src="{% static 'arle/arle_icons/docx.svg' %}" alt="Icone DOCX" />
+            <img src="{% static 'projeto/docx.svg' %}" alt="Icone DOCX" />
         {% elif ticket.url|endswith_custom:'.ai' %}
-            <img src="{% static 'arle/arle_icons/ai.svg' %}" alt="Icone AI" />
+            <img src="{% static 'projeto/ai.svg' %}" alt="Icone AI" />
         {% elif ticket.url|endswith_custom:'.css' %}
-            <img src="{% static 'arle/arle_icons/css.svg' %}" alt="Icone CSS" />
+            <img src="{% static 'projeto/css.svg' %}" alt="Icone CSS" />
         {% elif ticket.url|endswith_custom:'.csv' %}
-            <img src="{% static 'arle/arle_icons/csv.svg' %}" alt="Icone CSV" />
+            <img src="{% static 'projeto/csv.svg' %}" alt="Icone CSV" />
         {% elif ticket.url|endswith_custom:'.xml' %}
-            <img src="{% static 'arle/arle_icons/xml.svg' %}" alt="Icone XML" />
+            <img src="{% static 'projeto/xml.svg' %}" alt="Icone XML" />
         {% elif ticket.url|endswith_custom:'.zip' %}
-            <img src="{% static 'arle/arle_icons/zip.svg' %}" alt="Icone ZIP" />
+            <img src="{% static 'projeto/zip.svg' %}" alt="Icone ZIP" />
         {% else %}
-            <img src="{% static 'arle/arle_icons/default-icon.png' %}" alt="Icone Padrão" />
+            <img src="{% static 'projeto/default-icon.png' %}" alt="Icone Padrão" />
         {% endif %}
     </div>
     <div class="ms-3 ">
